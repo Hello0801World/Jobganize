@@ -1,18 +1,21 @@
 
 import express from 'express'
-import notFoundMiddleware from './middleware/notFoundMiddleware.js';
+
 
 // middleware
-notFoundMiddleware
+import notFoundMiddleware from './middleware/notFoundMiddleware.js';
+import errorHandling from './middleware/errorHandling.js';
 
 const app = express()
 
 app.get('/', (req,res)=>{
+  throw new Error('error')
   res.send('Welcome');
 })
 
-app.use(notFoundMiddleware)
 
+app.use(notFoundMiddleware)
+app.use(errorHandling)
 
 const port = process.env.PORT || 5000
 
