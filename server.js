@@ -1,12 +1,14 @@
-
 import express from 'express'
 
+const app = express()
+import dotenv from 'dotenv'
+dotenv.config()
 
 // middleware
 import notFoundMiddleware from './middleware/notFoundMiddleware.js';
 import errorHandling from './middleware/errorHandling.js';
 
-const app = express()
+
 
 app.get('/', (req,res)=>{
   throw new Error('error')
