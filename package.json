@@ -1,0 +1,27 @@
+{
+  "name": "jobifyapp",
+  "version": "1.0.0",
+  "description": "#### Track Your Job Search",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hello0801World/Jobganize.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hello0801World/Jobganize/issues"
+  },
+  "homepage": "https://github.com/Hello0801World/Jobganize#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
