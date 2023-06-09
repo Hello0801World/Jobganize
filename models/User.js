@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 import validator from "validator";
+import bcrypt from 'bcryptjs'
+import { Jwt } from "jsonwebtoken";
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -36,5 +38,19 @@ const UserSchema = new mongoose.Schema({
     default: 'my city',
   },
 })
+
+UserSchema.pre('save', async function(){
+  // create extra char for hashing (genSalt()). The longer a value in getSalt is, the better security
+  const salt = await bcrypt.genSalt(10) 
+  // hash 
+  this.password = await bcrypt.hash(this.password, salt)
+})
+
+// JWT allows user to access only their applications 
+// stores JWT in react state and local storage
+// custom instance method to create JWT
+UserSchema.methods.createJWT = function() {
+  console.timeLog(this)
+}
 
 export default mongoose.model('User', UserSchema)
