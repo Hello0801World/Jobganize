@@ -1,5 +1,6 @@
 import express from 'express' 
 const app = express()
+import 'express-async-errors'
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -26,6 +27,7 @@ app.use('/api/v1/jobs', jobsRouter)
 
 app.use(notFoundMiddleware)
 app.use(errorHandling)
+
 const port = process.env.PORT || 5000
 
 
