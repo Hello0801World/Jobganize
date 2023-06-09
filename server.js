@@ -1,11 +1,10 @@
-import express from 'express'
-import connectionDB from './db/connect.js';
-
+import express from 'express' 
 const app = express()
 import dotenv from 'dotenv'
 dotenv.config()
 
 // db and authentication
+import connectionDB from './db/connect.js';
 
 // router 
 import authRouter from './routes/authRoute.js'
@@ -19,7 +18,6 @@ import errorHandling from './middleware/errorHandling.js';
 app.use(express.json())
 
 app.get('/', (req,res)=>{
-  throw new Error('error')
   res.send('Welcome');
 })
 

@@ -4,7 +4,7 @@ const router = express.Router()
 import { createJob, getAllJobs, updateJob, deleteJob, showStats} from '../controllers/jobsController.js'
 
 router.route('/').post(createJob).get(getAllJobs)
-// remember about :id
+// place before :id
 router.route('/stats').get(showStats)
 router.route('/:id').delete(deleteJob).patch(updateJob)
 
