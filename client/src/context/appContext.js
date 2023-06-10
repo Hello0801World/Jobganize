@@ -1,5 +1,6 @@
 import React, { useState, useReducer, useContext } from 'react'
-import { DISPLAY_ALERT, CLEAR_ALERT } from "./actions"
+import { DISPLAY_ALERT, CLEAR_ALERT, REGISTER_USER_BEGIN, REGISTER_USER_SUCCESS, REGISTER_USER_ERROR } from "./actions"
+
 
 import reducer from './reducers'
 
@@ -8,6 +9,9 @@ const initialState = {
   showAlert: false,
   alertText: '',
   alertType: '',
+  user: null,
+  token: null,
+  userLocation: '',
 }
 
 const AppContext = React.createContext();
@@ -19,7 +23,6 @@ const AppProvider = ({children}) => {
     dispatch({type: DISPLAY_ALERT})
     clearAlert();
   }
-
   
   const clearAlert = () => {
     setTimeout (()=>{
@@ -27,8 +30,13 @@ const AppProvider = ({children}) => {
     },3000);
   }
 
+  const registerUser = async (currentUser)=> {
+    console.log(currentUser)
+  }
+
   return (
-    <AppContext.Provider value={{...state, displayAlert}}>
+    <AppContext.Provider value={{...state, displayAlert,
+    registerUser}}>
       {children}
     </AppContext.Provider>
   );

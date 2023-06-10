@@ -22,7 +22,7 @@ const Register = () => {
     setValues({...values, isMember: !values.isMember});
   }
 
-  const {isLoading, showAlert, displayAlert} = useAppContext()
+  const {isLoading, showAlert, displayAlert, registerUser} = useAppContext()
   
 
   // change of value in input field
@@ -40,6 +40,13 @@ const Register = () => {
       return 
     }
 
+    const currentUser = {name, email, password}
+
+    if (isMember){
+      console.log('already a member')
+    } else {
+      registerUser(currentUser)
+    }
   }
 
   return (
@@ -73,7 +80,8 @@ const Register = () => {
           value={values.password} 
           handleChange={handleChange}
         />
-        <button type='submit' className='btn btn-block'>
+        <button type='submit' className='btn btn-block'
+        disabled={isLoading}>
           Submit
         </button>
         <p>
