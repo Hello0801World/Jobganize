@@ -22,9 +22,11 @@ app.get('/', (req,res)=>{
   res.send('Welcome');
 })
 
+// router 
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/jobs', jobsRouter)
 
+// middleware
 app.use(notFoundMiddleware)
 app.use(errorHandling)
 

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import validator from "validator";
 import bcrypt from 'bcryptjs'
-import { Jwt } from "jsonwebtoken";
+import jwt  from "jsonwebtoken";
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -24,6 +24,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please provide password'],
     minlength: 6,
+    select: false, 
   },
   lastName: {
     type: String, 
@@ -50,7 +51,7 @@ UserSchema.pre('save', async function(){
 // stores JWT in react state and local storage
 // custom instance method to create JWT
 UserSchema.methods.createJWT = function() {
-  console.timeLog(this)
+  return jwt.sign({userId:this._id}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_LIFETIME})
 }
 
 export default mongoose.model('User', UserSchema)

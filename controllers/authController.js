@@ -19,9 +19,15 @@ const register = async(req, res, next) => {
 
 // CREATE USER
   const user = await User.create({ name, email, password});
-  user.createJWT(); // custom method from UserSchema
+  const token = user.createJWT(); // custom method from UserSchema
   // response
-  res.status(StatusCodes.OK).json({user});
+  res.status(StatusCodes.OK)
+  .json({ 
+    user :{
+    email:user.email, 
+    lastName: user.lastName, 
+    location: user.location, 
+    name:user.name}, token, location :user.location});
 }
 
 // LOGIN
